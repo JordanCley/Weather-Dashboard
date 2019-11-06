@@ -10,21 +10,61 @@ var currentHumidity = "";
 var currentWind = "";
 var currentUV = "";
 
+var forecastIconArray = [];
+var forecastDateArray = [];
+var forecastLowTempArray = [];
+var forecastHighTempArray = [];
+var forecastHumidityArray = [];
+var forecastDateArray = [];
+
 
 var queryCurrentWeatherURL = "";
 var queryForecastWeatherURL = "";
 var queryUVIndexURL = "";
 
+function displayForecast(){
+  
+}
+
+function displayCurrent(){
+  $("#cityName").text(city);
+  // console.log(currentIconURL); *** NEED TO LOOK INTO THIS ****
+  // $("#currentIcon").attr("src", currentIconURL);
+  $("#currentTemp").text(currentTemp);
+  $("#currentHumid").text(currentHumidity);
+  $("#currentWind").text(currentWind);
+}
+
+function forecast(response){
+  for(let i = 0;i < 5;i ++){
+    var icon = response.list[i].weather[0].icon;
+    var minTemp = response.list[i].main.temp_min;
+    var maxTemp = response.list[i].main.temp_max;
+    var humid = response.list[i].main.humidity;
+    var date = response.list[i].dt_txt;
+    var stripDate = date.split(" ", 1);
+    var joinDate = stripDate.join();
+    forecastIconArray.push(`http://openweathermap.org/img/w/${icon}.png`);
+    forecastLowTempArray.push(minTemp);
+    forecastHighTempArray.push(maxTemp);
+    forecastHumidityArray.push(humid);
+    forecastDateArray.push(joinDate);
+  }
+  // console.log(forecastHumidityArray);
+  // console.log(forecastDateArray);
+}
+
 
 function current(response){
-  console.log(response);
+  // console.log(response);
   city = response.name;
   currentIconCode = response.weather[0].icon;
   currentIconURL = `http://openweathermap.org/img/w/${currentIconCode}.png`;
   currentTemp = response.main.temp;
   currentHumidity = response.main.humidity;
   currentWind = response.wind.speed;
-  console.log(currentWind);
+  displayCurrent();
+  // console.log(currentWind);
 }
 
 // AJAX CALL FUNCTION
@@ -35,6 +75,7 @@ function ajaxCall(url){
       }).then(function(response) {
         // IF URL IS FOR 5 DAY FORECAST
           if(url === queryForecastWeatherURL){
+            forecast(response);
             // console.log(response.list[0]);
             // ELS IF URL IS FOR CURRENT FORECAST
           } else if(url === queryCurrentWeatherURL){
@@ -58,7 +99,7 @@ function ajaxCall(url){
 
 function currentUvIndex(response){
   currentUV = response.value;
-console.log(currentUV); 
+// console.log(currentUV); 
 }
 
 // GETTING UV INDEX QUERY URL FUNCTION
@@ -84,43 +125,7 @@ function searchCity(){
 }
 
 // CURRENT WEATHER
-// * City
-// console.log(response.name);
-
-// * Date
-// ????
-
-// * Icon image (visual representation of weather conditions)
-// var iconCode = response.weather[0].icon;
-// var iconUrl = "http://openweathermap.org/img/w/" + iconCode + ".png";
-
-// * Temperature
-// console.log(response.main.temp);
-
-// * Humidity
-// console.log(response.main.humidity);
-
-// * Wind speed
-// console.log(response.wind.speed);
-
-// * UV index
-// ?????
-
-// * Include a 5-Day Forecast below the current weather conditions. Each day for the 5-Day Forecast should display the following:
-
-//   * Date
-// console.log(response.list[0].dt_txt); need to strip off time
-
-//   * Icon image (visual representation of weather conditions)
-// var iconCode = response.list[0].weather[0].icon;
-// var iconUrl = "http://openweathermap.org/img/w/" + iconCode + ".png";
-// 
-//   * Temperature
-// console.log(response.list[0].main.temp);
-
-
-//   * Humidity
-// console.log(response.list[0].main.humidity);
+// * Date * MAYBE MOMENT.JS WOULD BE BETTER FOR ALL DATES??
 
 
 
