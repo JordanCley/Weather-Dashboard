@@ -32,19 +32,23 @@
           <div>
             <h2>Search for a City:</h2>
           </div>
-          <form id="form" action="">
-            <input id="search" type="text" />
-            <input type="submit" />
-          </form>
-          <ul class="list-group mt-2">
-            <li class="list-group-item">Austin</li>
+          <div>
+            <form id="form" action="">
+                <input id="search" type="text" />
+                <input type="submit" />
+            </form>
+            <button id="clear">Clear History</button>
+          </div>
+          
+          <ul id="searchList" class="list-group mt-2">
+            <!-- <li class="list-group-item">Austin</li>
             <li class="list-group-item">Texas</li>
             <li class="list-group-item">Indiana</li>
             <li class="list-group-item">Chicago</li>
             <li class="list-group-item">Los Angeles</li>
             <li class="list-group-item">Los Angeles</li>
             <li class="list-group-item">Los Angeles</li>
-            <li class="list-group-item">Los Angeles</li>
+            <li class="list-group-item">Los Angeles</li> -->
           </ul>
         </div>
         <div class="col-md-8 p-2">
@@ -54,16 +58,18 @@
               <p>Temperature: <span id="currentTemp"></span> &#8457;</p>
               <p>Humidity: <span id="currentHumid"></span> %</p>
               <p>Wind Speed: <span id="currentWind"></span> MPH </p>
-              <p>UV Index: <span id="uvIndex">7.35</span> </p>
+              <p>UV Index: <span id="currentUV"></span> </p>
             </div>
           </div>
+
           <div class="row">
             <div class="col">
               <h2 class="ml-4 mt-1" >5 Day Forecast:</h2>
             </div>
           </div>
-          <div class="row m-1">
-            <div class="col">
+
+          <div id="forecastList" class="row m-1">
+            <!-- <div class="col">
               <div class="card h-100">
                 <div class="card-body">
                   <h4 class="card-title"> Monday 11/2/19</h4>
@@ -150,7 +156,7 @@
                   <h6>Humidity: <span>73</span> %</h6>
                 </div>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>

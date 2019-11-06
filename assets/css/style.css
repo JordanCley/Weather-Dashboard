@@ -16,6 +16,11 @@ h1.navbar-brand.weatherBrand {
   font-size: 3em;
 }
 
+#clear {
+  float: right;
+  display: block;
+  color: blue;
+}
 div.row.fiveDay {
   width: 100%;
   margin: 0 auto;
