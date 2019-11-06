@@ -1,29 +1,59 @@
-var APIKey = "feb62cc847be5f32b6629a3d924facbc"; // "0d8e5cef9f1f9a5bc040c48374da619f"
-var citySearch = "hawaii";
+var APIKey = "feb62cc847be5f32b6629a3d924facbc"; 
+var citySearch = "";
 var lattitude = "";
 var longitude = "";
 
-var queryCurrentWeatherURL = "https://api.openweathermap.org/data/2.5/weather?q="+ citySearch +"&mode=json&units=imperial&appid=" + APIKey;
-var queryForecastWeatherURL = "https://api.openweathermap.org/data/2.5/forecast?q="+ citySearch +"&mode=json&units=imperial&appid=" + APIKey;
-// var queryUVIndexURL = "https://api.openweathermap.org/data/2.5/uvi?appid=" + APIKey + "&lat=" + lattitude + "&lon=" + longitude;
+var queryCurrentWeatherURL = "";
+var queryForecastWeatherURL = "";
+var queryUVIndexURL = "";
 
+// AJAX CALL FUNCTION
 function ajaxCall(url){
     $.ajax({
         url: url,
         method: "GET"
       }).then(function(response) {
+        // IF URL IS FOR 5 DAY FORECAST
           if(url === queryForecastWeatherURL){
-            // console.log(response.list[0]);
+            console.log(response.list[0]);
+            // ELS IF URL IS FOR CURRENT FORECAST
           } else if(url === queryCurrentWeatherURL){
+            console.log(response.name);
+            // REASSIGNING LON AND LAT TO GLOBAL VARIABLES
             longitude += response.coord.lon;
             lattitude += response.coord.lat;
-            console.log(typeof(lattitude));
-            console.log(typeof(longitude));
-            
+            getUvIndex();
+            ajaxCall(queryUVIndexURL);
+            console.log(lattitude);
+            console.log(longitude);
+            // ELSE IS FOR URL FOR UV INDEX
           } else {
-            console.log(response);
+            console.log(response.value);
+        
           }       
       });
+}
+
+// GETTING UV INDEX QUERY URL FUNCTION
+function getUvIndex(){
+queryUVIndexURL = `https://api.openweathermap.org/data/2.5/uvi?appid=${APIKey}&lat=${lattitude}&lon=${longitude}`;
+console.log(queryUVIndexURL); 
+}
+
+// SEARCH INPUT FUNCTION SETTING ALL WEATHER QUERY URLS
+function searchCity(){
+  $("#form").submit(function(){
+    event.preventDefault();
+    citySearch = $("#search").val().trim();
+    queryCurrentWeatherURL = `https://api.openweathermap.org/data/2.5/weather?q=${citySearch}&mode=json&units=imperial&appid=${APIKey}`;
+    console.log(citySearch);
+    console.log(queryCurrentWeatherURL);
+    queryForecastWeatherURL = `https://api.openweathermap.org/data/2.5/forecast?q=${citySearch}&mode=json&units=imperial&appid=${APIKey}`;
+    ajaxCall(queryForecastWeatherURL);
+    ajaxCall(queryCurrentWeatherURL);
+  })
+  
+  
 }
 
 // CURRENT WEATHER
@@ -66,6 +96,6 @@ function ajaxCall(url){
 // console.log(response.list[0].main.humidity);
 
 
-ajaxCall(queryForecastWeatherURL);
-ajaxCall(queryCurrentWeatherURL);
-// ajaxCall(queryUVIndexURL);
+
+searchCity();
+
