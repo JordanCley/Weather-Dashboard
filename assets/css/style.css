@@ -1,25 +1,33 @@
 .navbar.navbar-dark {
-  float: none;
-  margin: 0 auto;
   display: block;
   text-align: center;
 }
 
-body {
-    /* width: 100%; */
-    display: inline;
+
+#uvIndex {
+  background-color: red;
+  padding: 5px 5px 5px 5px;
+  border: 1px solid red;
+  border-radius: 10rem;
 }
 
 h1.navbar-brand.weatherBrand {
   color: red;
-  font-size: 2.5rem;
+  font-size: 3em;
 }
 
 div.card-body {
-    color: blue;
+  color: blue;
 }
 
 div.row.fiveDay {
-    width: 100%;
-    margin: 0 auto;
+  width: 100%;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 480px){
+  h1.navbar-brand.weatherBrand {
+    
+    font-size: 1.5rem;
+  }
 }
