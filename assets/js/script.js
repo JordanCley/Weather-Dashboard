@@ -276,9 +276,9 @@ function init() {
   currentDisplay.hide();
 }
 
-// $(document).ready(function() {
-//   init();
-// });
+$(document).ready(function() {
+  init();
+});
 
 // geoLocation();
 
