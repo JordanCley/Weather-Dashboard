@@ -1,37 +1,37 @@
 // API KEY
-let APIKey = "feb62cc847be5f32b6629a3d924facbc";
+let APIKey          = "feb62cc847be5f32b6629a3d924facbc";
 
-let currentDisplay = $("#currentDisplay");
+let currentDisplay  = $("#currentDisplay");
 
 // CURRENT VARIABLES
-let citySearch = "",
-  lattitude = "",
-  longitude = "",
-  city = "",
-  currentIconCode = "",
-  currentIconURL = "",
-  currentTemp = "",
-  currentHumidity = "",
-  currentWind = "",
-  currentUV = "",
-  currentDate = "";
+let citySearch      = "",
+    lattitude       = "",
+    longitude       = "",
+    city            = "",
+    currentIconCode = "",
+    currentIconURL  = "",
+    currentTemp     = "",
+    currentHumidity = "",
+    currentWind     = "",
+    currentUV       = "",
+    currentDate     = "";
 
 // SEARCH HISTORY VARIABLES
-let searches = [],
-  storedSearches = [];
+let searches        = [],
+    storedSearches  = [];
 
 // FORECAST ARRAYS
-let forecastIconArray = [],
-  forecastDatesArray = [],
-  forecastLowTempArray = [],
-  forecastHighTempArray = [],
-  forecastHumidityArray = [];
+let forecastIconArray     = [],
+    forecastDatesArray    = [],
+    forecastLowTempArray  = [],
+    forecastHighTempArray = [],
+    forecastHumidityArray = [];
 
 // AJAX QUERY URLS
-let queryCurrentWeatherURL = "",
-  queryForecastWeatherURL = "",
-  queryUVIndexURL = "",
-  queryGeoURL = "";
+let queryCurrentWeatherURL  = "",
+    queryForecastWeatherURL = "",
+    queryUVIndexURL         = "",
+    queryGeoURL             = "";
 
 // USING OMENTS.JS TO GET FORECAST DATES
 function forecastDates() {
@@ -276,9 +276,9 @@ function init() {
   currentDisplay.hide();
 }
 
-$(document).ready(function() {
-  init();
-});
+// $(document).ready(function() {
+//   init();
+// });
 
 // geoLocation();
 
