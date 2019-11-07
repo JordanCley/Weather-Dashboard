@@ -23,6 +23,30 @@ h1.navbar-brand.weatherBrand {
   font-size: 3.5em;
   text-shadow: 5px 5px black;
 }
+#clear {
+  border-radius: 10px;
+  border: 1px solid #110161;
+  color: #110161;
+}
+#submit {
+  border-radius: 10px;
+  border: 1px solid #110161;
+  color: #110161;
+}
+
+#search {
+  font-size: 18px !important;
+}
+
+#submit:focus {
+  outline: none;
+  background: grey;
+}
+
+#clear:focus {
+  outline: none;
+  background: grey;
+}
 
 .formCol {
   background-color: #c0c0c0;
