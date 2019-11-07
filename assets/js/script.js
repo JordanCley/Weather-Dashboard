@@ -29,11 +29,11 @@ var forecastHumidityArray = [];
 var queryCurrentWeatherURL = "";
 var queryForecastWeatherURL = "";
 var queryUVIndexURL = "";
+var queryGeoURL = "";
 
 // CLEARING SEARCH HISTORY WHEN BUTTON CLICK
 function clearHistory(){
   $("#clear").on("click", function(){
-    console.log("clicked");
   $(".list-group-item").remove();
   storedSearches = [];
   searches = [];
@@ -64,7 +64,7 @@ function reSearch(){
   $(".days").remove();
 }
 
-// DISPLAYIG SEARCH HISTORY AND ADDING EVENT LISTENER
+// DISPLAYING SEARCH HISTORY AND ADDING EVENT LISTENER
 function displayHistory(){
   $(".list-group-item").remove();
   for(let i = 0;i < storedSearches.length;i ++){
@@ -83,7 +83,6 @@ function displayHistory(){
     queryForecastWeatherURL = `https://api.openweathermap.org/data/2.5/forecast?q=${citySearch}&mode=json&units=imperial&appid=${APIKey}`;
     ajaxCall(queryForecastWeatherURL);
     ajaxCall(queryCurrentWeatherURL);
-    console.log(citySearch);
   })
 }
 
@@ -126,8 +125,8 @@ function displayForecast(){
               src="${icon}"
               alt=""
             />
-          <h6>High-temp: <span>${highTemp}</span> &#8457; </h6>
-          <h6>Low-temp: <span>${lowTemp}</span> &#8457; </h6>
+          <h6>High: <span>${highTemp}</span> &#8457; </h6>
+          <h6>Low: <span>${lowTemp}</span> &#8457; </h6>
           <br />
           <h6>Humidity: <span>${humidity}</span> %</h6>
         </div>
@@ -141,14 +140,11 @@ function displayForecast(){
 // SETTING VARIABLES TO DISPLAY TEXT ON INDEX>HTML
 function displayCurrent(){
   $("#cityName").text(city);
-  // console.log(currentIconURL); *** NEED TO LOOK INTO THIS ****
-  // $("#currentIcon").attr("src", currentIconURL);
+  console.log(currentIconURL); 
+  $("#currentIcon").attr("src", currentIconURL);
   $("#currentTemp").text(currentTemp);
   $("#currentHumid").text(currentHumidity);
   $("#currentWind").text(currentWind);
-  // *** UNDEFINED HERE *****
-  // console.log(currentUV);
-  $("#currentUV").text(currentUV);
 }
 
 // PUSHING RESPONSE PROPS INTO ARRAYS
@@ -216,16 +212,24 @@ function ajaxCall(url){
 
 // SETTING CURRENT UV INDEX TO VARIABLE
 function currentUvIndex(response){
-  // console.log(response);
-  currentUV += response.value;
-  // ** HAS UV VALUE HERE **
-// console.log(currentUV); 
+  currentUV = response.value;
+    if(currentUV <= 2){
+      $("#currentUV").css("background-color", "#68FA58");
+    } if(currentUV > 2 &&  currentUV < 6){
+      $("#currentUV").css("background-color", "#FAF20D");
+    } if(currentUV >= 6 && currentUV < 8){
+      $("#currentUV").css("background-color", "#FC6C0D");
+    } if(currentUV >= 8 && currentUV < 11){
+      $("#currentUV").css("background-color", "#FC0D0D");
+    } if(currentUV >= 11){
+      $("#currentUV").css("background-color", "#8E23C4");
+    }
+  $("#currentUV").text(currentUV); 
 }
 
 // GETTING UV INDEX QUERY URL FUNCTION
 function getUvIndex(){
 queryUVIndexURL = `https://api.openweathermap.org/data/2.5/uvi?appid=${APIKey}&lat=${lattitude}&lon=${longitude}`;
-// console.log(queryUVIndexURL); 
 }
 
 // SEARCH INPUT FUNCTION SETTING ALL WEATHER QUERY URLS
@@ -255,6 +259,25 @@ function init(){
 
 $(document).ready(function() {
   init();
+  geoLocation();
 });
+
+// if ("geolocation" in navigator) {
+//   console.log("geolocation is available")
+// } else {
+//   console.log("geolocation is not available")  
+// }
+
+function geoLocation(){
+  navigator.geolocation.getCurrentPosition(function(position) {
+  
+  lattitude = position.coords.latitude;
+  console.log(lattitude);
+  longitude = position.coords.longitude;
+  console.log(longitude);
+  queryGeoURL = `https://api.openweathermap.org/data/2.5/weather?appid=${APIKey}&lat=${lattitude}&lon=${longitude}`;
+  ajaxCall(queryGeoURL);
+  });
+}
 
 

@@ -4,8 +4,7 @@
 }
 
 
-#uvIndex {
-  background-color: red;
+#currentUV {
   padding: 5px 5px 5px 5px;
   border: 1px solid red;
   border-radius: 10rem;
@@ -16,11 +15,6 @@ h1.navbar-brand.weatherBrand {
   font-size: 3em;
 }
 
-#clear {
-  float: right;
-  display: block;
-  color: blue;
-}
 div.row.fiveDay {
   width: 100%;
   margin: 0 auto;
@@ -31,4 +25,6 @@ div.row.fiveDay {
     
     font-size: 1.5rem;
   }
+
+ 
 }
