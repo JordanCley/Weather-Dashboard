@@ -6,10 +6,23 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Weather-Dashboard</title>
 
+    <!--------------- GOOGLE FONTS ---------------->
+    <link
+      href="https://fonts.googleapis.com/css?family=Big+Shoulders+Display&display=swap"
+      rel="stylesheet"
+    />
+
+    <!------------- MOMENT.JS ------------------>
+    <script src="https://rawgit.com/moment/moment/2.2.1/min/moment.min.js"></script>
+
     <!------------ STYLESHEET ----------------->
     <link rel="stylesheet" href="assets/css/style.css" />
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+    <!---------- FONT AWESOME ---------------->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
+    />
 
     <!----------- BOOTSTRAP STYLESHEET --------->
     <link
@@ -21,7 +34,7 @@
   </head>
   <body>
     <header>
-      <nav id="nav" class="navbar navbar-dark bg-dark m-2">
+      <nav id="nav" class="navbar navbar-dark m-2">
         <h1 class="navbar-brand weatherBrand">
           Weather Dashboard
         </h1>
@@ -30,45 +43,46 @@
 
     <div class="container-fluid m-2">
       <div class="row">
-        <div class="col-md-4 bg-light">
+        <div class="col-md-4 formCol">
           <div>
             <h2>Search for a City:</h2>
           </div>
 
           <div class="row">
             <form class="ml-3" id="form" action="">
-                <input class="input-lg" id="search" type="text" />
-                <button class="btn-md" type="submit" >
-                  <i class="fa fa-search" aria-hidden="true"></i>
-                </button>
+              <input class="input-lg" id="search" type="text" />
+              <button class="btn-md" type="submit">
+                <i class="fa fa-search" aria-hidden="true"></i>
+              </button>
             </form>
             <button class="btn-md ml-1" id="clear">Clear</button>
           </div>
           <ul id="searchList" class="list-group mt-2"></ul>
         </div>
-        <div class="col-md-8 p-2">
-          <div class="row border border-secondary m-1 p-1">
-            <div class="col bg-warning">
+
+        <div id="currentDisplay" class="col-md-8 p-2">
+          <div class="row border border-secondary mr-3 m-1 p-1">
+            <div id="cityDisplay" class="col">
               <div class="row">
-                  <h2 class="ml-3" id="cityName"> (<span></span>)</h2>
-                  <img id="currentIcon" src="" alt="">  
+                <h2 class="ml-3" id="cityName"></h2>
+                <h3 class="m-1" id="currentDate"></h3>
+                <img id="currentIcon" src="" alt="" />
               </div>
               <div>
-                  <p>Temperature: <span id="currentTemp"></span> &#8457;</p>
-                  <p>Humidity: <span id="currentHumid"></span> %</p>
-                  <p>Wind Speed: <span id="currentWind"></span> MPH </p>
-                  <p>UV Index: <span id="currentUV"></span> </p>
+                <p>Temperature: <span id="currentTemp"></span> &#8457;</p>
+                <p>Humidity: <span id="currentHumid"></span> %</p>
+                <p>Wind Speed: <span id="currentWind"></span> MPH</p>
+                <p>UV Index: <span id="currentUV"></span></p>
               </div>
             </div>
           </div>
 
           <div class="row">
             <div class="col">
-              <h2 class="ml-4 mt-1" >5 Day Forecast:</h2>
+              <h2 id="fiveDay" class="ml-4 mt-1 fiveDay">5 Day Forecast:</h2>
             </div>
           </div>
-          <div id="forecastList" class="row m-1">
-          </div>
+          <div id="forecastList" class="row m-1"></div>
         </div>
       </div>
     </div>
@@ -92,7 +106,7 @@
       crossorigin="anonymous"
     ></script>
 
-    <!-- JQUERY -->
+    <!-- -----------JQUERY ------------------>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <!----------- JS ------------------>
