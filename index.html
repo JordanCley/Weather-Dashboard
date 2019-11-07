@@ -9,6 +9,8 @@
     <!------------ STYLESHEET ----------------->
     <link rel="stylesheet" href="assets/css/style.css" />
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+
     <!----------- BOOTSTRAP STYLESHEET --------->
     <link
       rel="stylesheet"
@@ -32,33 +34,31 @@
           <div>
             <h2>Search for a City:</h2>
           </div>
-          <div>
-            <form id="form" action="">
-                <input id="search" type="text" />
-                <input type="submit" />
+
+          <div class="row">
+            <form class="ml-3" id="form" action="">
+                <input class="input-lg" id="search" type="text" />
+                <button class="btn-md" type="submit" >
+                  <i class="fa fa-search" aria-hidden="true"></i>
+                </button>
             </form>
-            <button id="clear">Clear History</button>
+            <button class="btn-md ml-1" id="clear">Clear</button>
           </div>
-          
-          <ul id="searchList" class="list-group mt-2">
-            <!-- <li class="list-group-item">Austin</li>
-            <li class="list-group-item">Texas</li>
-            <li class="list-group-item">Indiana</li>
-            <li class="list-group-item">Chicago</li>
-            <li class="list-group-item">Los Angeles</li>
-            <li class="list-group-item">Los Angeles</li>
-            <li class="list-group-item">Los Angeles</li>
-            <li class="list-group-item">Los Angeles</li> -->
-          </ul>
+          <ul id="searchList" class="list-group mt-2"></ul>
         </div>
         <div class="col-md-8 p-2">
           <div class="row border border-secondary m-1 p-1">
             <div class="col bg-warning">
-              <h2 id="cityName"> (<span>8/23/19</span>) <span> <img id="currentIcon" src="" alt=""> </span> </h2>
-              <p>Temperature: <span id="currentTemp"></span> &#8457;</p>
-              <p>Humidity: <span id="currentHumid"></span> %</p>
-              <p>Wind Speed: <span id="currentWind"></span> MPH </p>
-              <p>UV Index: <span id="currentUV"></span> </p>
+              <div class="row">
+                  <h2 class="ml-3" id="cityName"> (<span></span>)</h2>
+                  <img id="currentIcon" src="" alt="">  
+              </div>
+              <div>
+                  <p>Temperature: <span id="currentTemp"></span> &#8457;</p>
+                  <p>Humidity: <span id="currentHumid"></span> %</p>
+                  <p>Wind Speed: <span id="currentWind"></span> MPH </p>
+                  <p>UV Index: <span id="currentUV"></span> </p>
+              </div>
             </div>
           </div>
 
@@ -67,96 +67,7 @@
               <h2 class="ml-4 mt-1" >5 Day Forecast:</h2>
             </div>
           </div>
-
           <div id="forecastList" class="row m-1">
-            <!-- <div class="col">
-              <div class="card h-100">
-                <div class="card-body">
-                  <h4 class="card-title"> Monday 11/2/19</h4>
-                  <img
-                    class="card-img-top"
-                    src="http://placehold.it/700x400"
-                    alt=""
-                  />
-                  <h6>High-Temp: 84.64 f</h6>
-                  <br />
-                  <h6>Humidity: 43%</h6>
-                </div>
-              </div>
-            </div>
-
-            <div class="col">
-              <div class="card h-100 bg-info">
-                <div class="card-body">
-                  <h4 class="card-title">
-                    11/2/19
-                  </h4>
-                  <img
-                    class="card-img-top"
-                    src="http://openweathermap.org/img/wn/10d@2x.png"
-                    alt=""
-                  />
-                  <h6>High-temp: <span>84.64 </span> &#8457; </h6>
-                  <h6>Low-temp: <span>84.64 </span> &#8457; </h6>
-                  <br />
-                  <h6>Humidity: <span>34</span> %</h6>
-                </div>
-              </div>
-            </div>
-
-            <div class="col">
-              <div class="card h-100">
-                <div class="card-body">
-                  <h4 class="card-title">
-                    Monday 11/2/19
-                  </h4>
-                  <img
-                    class="card-img-top"
-                    src="http://placehold.it/700x400"
-                    alt=""
-                  />
-                  <h6>Temp: 84.64 f</h6>
-                  <br />
-                  <h6>Humidity: 43%</h6>
-                </div>
-              </div>
-            </div>
-
-            <div class="col">
-              <div class="card h-100">
-                <div class="card-body">
-                  <h4 class="card-title">
-                    Monday 11/2/19
-                  </h4>
-                  <img
-                    class="card-img-top"
-                    src="http://placehold.it/700x400"
-                    alt=""
-                  />
-                  <h6>Temp: 84.64 f</h6>
-                  <br />
-                  <h6>Humidity: 43%</h6>
-                </div>
-              </div>
-            </div>
-
-            <div class="col">
-              <div class="card h-100">
-                <div class="card-body">
-                  <h4 class="card-title">
-                    Monday 11/2/19
-                  </h4>
-                  <img
-                    class="card-img-top"
-                    src="http://placehold.it/700x400"
-                    alt=""
-                  />
-                  <h6>Temp:<span>84.64</span> F </h6> 
-                  <br />
-                  <h6>Humidity: <span>73</span> %</h6>
-                </div>
-              </div>
-            </div> -->
           </div>
         </div>
       </div>
